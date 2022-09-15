@@ -55,7 +55,6 @@ declare global {
 		$sopia: SpoonClient;
 		reloadCfg: () => void;
 		appCfg: CfgLite;
-		logout: () => void;
 	}
 }
 

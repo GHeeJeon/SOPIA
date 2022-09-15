@@ -110,10 +110,22 @@ const snsLoginOpenByPuppeteer = (url: string) => new Promise(async (resolve, rej
 			launcher('which chromium'),
 			launcher('which brave-browser'),
 		]);
+	} else if ( process.platform === 'darwin' ) {
+		executablePath = pickProgram([
+			`/Users/gminho/Safari.app`,
+			// launcher(`open -a Whale`),
+			// launcher(`echo -n /Applications/Safari.app`),
+			// launcher(`echo -n /Applications/Google Chrome.app`),
+			// launcher('open -a Firefox'),
+			// https://accounts.google.com/o/oauth2/v2/auth/identifier?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=%7B%22sns_type%22%3A%22google%22%2C%22countryCode%22%3A%22kr%22%2C%22is_jwt%22%3Atrue%2C%22is_agree%22%3A%220%22%7D&access_type=online&response_type=code&client_id=108800953922-a6n2m60akdia5udhl8pgpt5mg8liu7nj.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fwww.spooncast.net%2Fkr%2Foauth%2Fauthorized%2F&flowName=GeneralOAuthFlow
+			// https://www.facebook.com/login.php?skip_api_login=1&api_key=760006310788461&kid_directed_site=0&app_id=760006310788461&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv6.0%2Fdialog%2Foauth%3Fclient_id%3D760006310788461%26redirect_uri%3Dhttps%253A%252F%252Fwww.spooncast.net%252Fkr%252Foauth%252Fauthorized%252F%26state%3D%257B%2522sns_type%2522%253A%2522facebook%2522%252C%2522countryCode%2522%253A%2522kr%2522%252C%2522is_jwt%2522%253Atrue%252C%2522is_agree%2522%253A%25220%2522%257D%26scope%3Demail%252Cuser_gender%252Cuser_birthday%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D7545da45-d983-48d5-ab59-db7da8b5e6d5%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.spooncast.net%2Fkr%2Foauth%2Fauthorized%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522sns_type%2522%253A%2522facebook%2522%252C%2522countryCode%2522%253A%2522kr%2522%252C%2522is_jwt%2522%253Atrue%252C%2522is_agree%2522%253A%25220%2522%257D%23_%3D_&display=page&locale=ko_KR&pl_dbl=0
+			// https://www.facebook.com/login.php?skip_api_login=1&api_key=760006310788461&kid_directed_site=0&app_id=760006310788461&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv6.0%2Fdialog%2Foauth%3Fclient_id%3D760006310788461%26redirect_uri%3Dhttps%253A%252F%252Fwww.spooncast.net%252Fkr%252Foauth%252Fauthorized%252F%26state%3D%257B%2522sns_type%2522%253A%2522facebook%2522%252C%2522countryCode%2522%253A%2522kr%2522%252C%2522is_jwt%2522%253Atrue%252C%2522is_agree%2522%253A%25220%2522%257D%26scope%3Demail%252Cuser_gender%252Cuser_birthday%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1d53b73f-2770-45f2-a2a3-8b0147ace644%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.spooncast.net%2Fkr%2Foauth%2Fauthorized%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522sns_type%2522%253A%2522facebook%2522%252C%2522countryCode%2522%253A%2522kr%2522%252C%2522is_jwt%2522%253Atrue%252C%2522is_agree%2522%253A%25220%2522%257D%23_%3D_&display=page&locale=ko_KR&pl_dbl=0
+			// https://appleid.apple.com/auth/authorize?response_type=code&client_id=SpoonMe.Mycoon&redirect_uri=https%3A%2F%2Fwww.spooncast.net%2Fkr%2Foauth%2Fauthorized%2F&scope=email&state=%7B%22sns_type%22%3A%22apple%22%2C%22countryCode%22%3A%22kr%22%2C%22is_jwt%22%3Atrue%2C%22is_agree%22%3A%220%22%7D&response_mode=form_post
+		]);
 	}
 
 	if ( executablePath === '' ) {
-		console.log(`Can not find supported browser list.`);
+		console.log('Can not find supported browser list.');
 		reject();
 		return;
 	}
