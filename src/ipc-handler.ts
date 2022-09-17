@@ -112,8 +112,9 @@ const snsLoginOpenByPuppeteer = (url: string) => new Promise(async (resolve, rej
 		]);
 	} else if ( process.platform === 'darwin' ) {
 		executablePath = pickProgram([
-			`/Users/gminho/Safari.app`,
-			// launcher(`open -a Whale`),
+			launcher('which chrome'),
+			// `/Users/gminho/Safari.app`,
+			launcher(`open -a Google\\ Chrome`),
 			// launcher(`echo -n /Applications/Safari.app`),
 			// launcher(`echo -n /Applications/Google Chrome.app`),
 			// launcher('open -a Firefox'),
